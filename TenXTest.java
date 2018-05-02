@@ -86,8 +86,8 @@ class TenXTest {
 //
 //			for (int i = 0; i < vertices.size(); i++)
 //
-//				for (int j = 0; k < vertices.size(); j++) {
-//					
+//				for (int j = 0; j < vertices.size(); j++) {
+//					if(i != j && i != k && j!= k)
 //					if (rate.get(getKey(i ,j)) < rate.get(getKey(i, k)) * rate.get(getKey(k, j))) {
 //						rate.put(getKey(i ,j), rate.get(getKey(i, k)) * rate.get(getKey(k, j)));
 //						next.put(getKey(i ,j), next.get(getKey(i, k)));
@@ -96,7 +96,11 @@ class TenXTest {
 		for(Vertex k : vertices)
 			for(Vertex i : vertices)
 				for(Vertex j : vertices) {
-					
+					if(!i.equals(j) && !i.equals(k)  && !k.equals(j) )
+					if (rate.get(new Key(i, j)) < rate.get(new Key(i, k)) * rate.get(new Key(k, j))) {
+						rate.put(new Key(i ,j), rate.get(new Key(i, k)) * rate.get(new Key(k, j)));
+						next.put(new Key(i ,j), next.get(new Key(i, k)));
+					}
 				}
 			
 	}
