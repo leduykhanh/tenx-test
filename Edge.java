@@ -14,4 +14,16 @@ public class Edge {
 	public String toString() {
 		return from.toString() + " -- " + weight + " --> " + to.toString();
 	}
+	
+	public Vertex getFrom() {
+		return this.from;
+	}
+	
+	public Vertex getTo() {
+		return this.to;
+	}
+	
+	public float getWeight() {
+		return this.weight;
+	}
 }

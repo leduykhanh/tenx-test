@@ -20,4 +20,12 @@ public class Vertex {
 	public String getExchange() {
 		return exchange;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vertex)) return false;
+        Vertex vetex = (Vertex) o;
+        return vetex.getCurrency().equals(currency) && vetex.getExchange().equals(exchange);
+    }
 }
