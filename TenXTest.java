@@ -12,6 +12,7 @@ class TenXTest {
 	Set<Edge> graph = new HashSet<Edge>();
 	Set<Vertex> vertices = new HashSet<Vertex>();
 	Map<Vertex, Vertex> rate = new HashMap<Vertex, Vertex>();
+	Map<Vertex, Vertex> next = new HashMap<Vertex, Vertex>();
 
 	void readData() {
 		while (sc.hasNext()) {
@@ -61,4 +62,9 @@ class TenXTest {
 	void bestRates() {
 		
 	}
+	
+	void Path(Vertex u, Vertex v) {
+		
+	}
+	
 }
