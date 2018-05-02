@@ -30,8 +30,8 @@ class TenXTest {
 				Vertex u = new Vertex(source_exchange, source_currency);
 				Vertex v = new Vertex(destination_exchange, destination_currency);
 				System.out.println("BEST_RATES_BEGIN");
-				System.out.println(next.size());
 				bestRates();
+				
 				path(u, v);
 				System.out.println("BEST_RATES_END");
  			}
@@ -79,17 +79,26 @@ class TenXTest {
 			next.put(uv, edge.getTo());
 		}
 		
-		for (int k = 0; k < vertices.size(); k++)
-
-			for (int i = 0; i < vertices.size(); i++)
-
-				for (int j = 0; k < vertices.size(); j++) {
-
-					if (rate.get(getKey(i ,j)) < rate.get(getKey(i, k)) * rate.get(getKey(k, j))) {
-						rate.put(getKey(i ,j), rate.get(getKey(i, k)) * rate.get(getKey(k, j)));
-						next.put(getKey(i ,j), next.get(getKey(i, k)));
-					}
+//		System.out.println((getKey(0 ,1)).hashCode());
+//		System.out.println(vertices);
+		
+//		for (int k = 0; k < vertices.size(); k++)
+//
+//			for (int i = 0; i < vertices.size(); i++)
+//
+//				for (int j = 0; k < vertices.size(); j++) {
+//					
+//					if (rate.get(getKey(i ,j)) < rate.get(getKey(i, k)) * rate.get(getKey(k, j))) {
+//						rate.put(getKey(i ,j), rate.get(getKey(i, k)) * rate.get(getKey(k, j)));
+//						next.put(getKey(i ,j), next.get(getKey(i, k)));
+//					}
+//				}
+		for(Vertex k : vertices)
+			for(Vertex i : vertices)
+				for(Vertex j : vertices) {
+					
 				}
+			
 	}
 	
 	void path(Vertex u, Vertex v) {

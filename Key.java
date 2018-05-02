@@ -15,4 +15,14 @@ public class Key {
         Key key = (Key) o;
         return u.toString().equals(key.u.toString()) && v.toString().equals(key.v.toString());
     }
+	
+	@Override
+    public int hashCode() {
+		return u.hashCode() * 31 + v.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		return u.toString() + "," + v.toString();
+	}
 }

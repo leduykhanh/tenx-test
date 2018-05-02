@@ -28,4 +28,9 @@ public class Vertex {
         Vertex vetex = (Vertex) o;
         return vetex.getCurrency().equals(currency) && vetex.getExchange().equals(exchange);
     }
+	
+	@Override
+    public int hashCode() {
+		return exchange.hashCode() * 31 + currency.hashCode();
+	}
 }
