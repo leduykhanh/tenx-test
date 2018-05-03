@@ -30,10 +30,9 @@ class TenXTest {
 				Vertex u = new Vertex(source_exchange, source_currency);
 				Vertex v = new Vertex(destination_exchange, destination_currency);
 				Key uv = new Key(u, v);
-				System.out.println("BEST_RATES_BEGIN " + source_exchange + " " + source_currency 
-						+ " " + destination_exchange + " " + destination_currency + " " + rate.get(uv));
 				bestRates();
-				
+				System.out.println("BEST_RATES_BEGIN " + source_exchange + " " + source_currency 
+						+ " " + destination_exchange + " " + destination_currency + " " + rate.get(uv));			
 				printPath(path(u, v));
 				System.out.println("BEST_RATES_END");
 				System.out.println(rate);
