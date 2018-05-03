@@ -5,7 +5,7 @@ class TenXTest {
 	public static void main(String[] args) {
 		TenXTest test = new TenXTest();
 		test.readData();
-		test.printGraph();
+//		test.printGraph();
 	}
 
 	public static Scanner sc = new Scanner(System.in);
@@ -29,11 +29,15 @@ class TenXTest {
 				String destination_currency = items[4];
 				Vertex u = new Vertex(source_exchange, source_currency);
 				Vertex v = new Vertex(destination_exchange, destination_currency);
-				System.out.println("BEST_RATES_BEGIN");
+				Key uv = new Key(u, v);
+				System.out.println("BEST_RATES_BEGIN " + source_exchange + " " + source_currency 
+						+ " " + destination_exchange + " " + destination_currency + " " + rate.get(uv));
 				bestRates();
 				
-				path(u, v);
+				printPath(path(u, v));
 				System.out.println("BEST_RATES_END");
+				System.out.println(rate);
+				System.out.println(new Key(u, v));
  			}
 			
 			else { // Price updates
@@ -79,25 +83,11 @@ class TenXTest {
 			next.put(uv, edge.getTo());
 		}
 		
-//		System.out.println((getKey(0 ,1)).hashCode());
-//		System.out.println(vertices);
-		
-//		for (int k = 0; k < vertices.size(); k++)
-//
-//			for (int i = 0; i < vertices.size(); i++)
-//
-//				for (int j = 0; j < vertices.size(); j++) {
-//					if(i != j && i != k && j!= k)
-//					if (rate.get(getKey(i ,j)) < rate.get(getKey(i, k)) * rate.get(getKey(k, j))) {
-//						rate.put(getKey(i ,j), rate.get(getKey(i, k)) * rate.get(getKey(k, j)));
-//						next.put(getKey(i ,j), next.get(getKey(i, k)));
-//					}
-//				}
 		for(Vertex k : vertices)
 			for(Vertex i : vertices)
 				for(Vertex j : vertices) {
-					if(!i.equals(j) && !i.equals(k)  && !k.equals(j) )
-					if (rate.get(new Key(i, j)) < rate.get(new Key(i, k)) * rate.get(new Key(k, j))) {
+					if (rate.getOrDefault(new Key(i, j), (float)0.0) 
+							< rate.getOrDefault(new Key(i, k), (float)0.0) * rate.getOrDefault(new Key(k, j), (float)0.0)) {
 						rate.put(new Key(i ,j), rate.get(new Key(i, k)) * rate.get(new Key(k, j)));
 						next.put(new Key(i ,j), next.get(new Key(i, k)));
 					}
@@ -105,11 +95,20 @@ class TenXTest {
 			
 	}
 	
-	void path(Vertex u, Vertex v) {
-		if (next.get(new Key(u, v)) == null) return;
+	List<Vertex> path(Vertex u, Vertex v) {
+		List<Vertex> path = new ArrayList<Vertex>(); 
+		if (next.get(new Key(u, v)) == null) return path;
+		path.add(u);
 		while (!u.equals(v)) {
 			u = next.get(new Key(u, v));
-			System.out.println(u);
+			path.add(u);
+		}
+		return path;
+	}
+	
+	void printPath(List<Vertex> path) {
+		for (Vertex v : path) {
+			System.out.println(v);
 		}
 	}
 	
