@@ -5,7 +5,6 @@ class TenXTest {
 	public static void main(String[] args) {
 		TenXTest test = new TenXTest();
 		test.readData();
-//		test.printGraph();
 	}
 
 	public static Scanner sc = new Scanner(System.in);
@@ -22,7 +21,6 @@ class TenXTest {
 			
 			//Exchange Rate Requests
 			if(line.contains("EXCHANGE_RATE_REQUEST")) {
-				//EXCHANGE_RATE_REQUEST KRAKEN BTC GDAX USD 
 				String source_exchange = items[1];
 				String source_currency = items[2];
 				String destination_exchange = items[3];
@@ -35,8 +33,7 @@ class TenXTest {
 						+ " " + destination_exchange + " " + destination_currency + " " + rate.get(uv));			
 				printPath(path(u, v));
 				System.out.println("BEST_RATES_END");
-				System.out.println(rate);
-				System.out.println(new Key(u, v));
+
  			}
 			
 			else { // Price updates
@@ -111,7 +108,7 @@ class TenXTest {
 		}
 	}
 	
-	private Key getKey(int i, int j) {
+	Key getKey(int i, int j) {
 		Object vArray[] = vertices.toArray();
 		return new Key((Vertex)vArray[i], (Vertex)vArray[j]);
 	}
