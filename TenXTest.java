@@ -105,7 +105,7 @@ class TenXTest {
 		while (!u.equals(v)) {
 			u = next.get(new Key(u, v));
 			path.add(u);
-		}
+		}	
 		return path;
 	}
 	
